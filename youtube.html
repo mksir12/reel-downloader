@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Video Downloader</title>
+    <meta name="theme-color" content="#E1306C">
+    <meta name="description" content="Download YouTube videos easily in MP4 or MP3">
+    
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+</head>
+<body class="min-h-screen bg-gray-50">
+
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fab fa-youtube text-3xl text-red-600"></i>
+                <span>YouTube Downloader</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="btn">Instagram Downloader</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="card">
+            <input type="text" id="youtubeUrl" placeholder="Paste YouTube video URL here..." class="input-box">
+            
+            <div class="options">
+                <select id="format" class="input-box">
+                    <option value="mp4">MP4</option>
+                    <option value="mp3">MP3</option>
+                </select>
+            </div>
+
+            <button onclick="downloadYouTube()" class="btn primary">Download Video</button>
+            <div id="loadingYT" class="loading hide"></div>
+            <video id="videoPlayerYT" controls class="hide"></video>
+            <a id="downloadButtonYT" href="#" download class="btn hide">Save File</a>
+        </div>
+    </div>
+
+</body>
+</html>
