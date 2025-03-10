@@ -16,7 +16,7 @@ async function downloadInstagram() {
     errorMessage.classList.add('hide');
 
     try {
-        const apiUrl = `https://your-api-link.com/instagram?url=${encodeURIComponent(urlInput.value)}`;
+        const apiUrl = `https://cors.karankingrider.workers.dev/?url=https://ytdl-amber.vercel.app/api/instagram?url=${encodeURIComponent(urlInput.value)}&quality=${quality}&format=${fo}`;
         const response = await fetch(apiUrl);
         const data = await response.json();
 
@@ -53,7 +53,7 @@ async function downloadYouTube() {
     errorMessage.classList.add('hide');
 
     try {
-        const apiUrl = `https://your-api-link.com/youtube?url=${encodeURIComponent(urlInput.value)}&format=${format}`;
+        const apiUrl = `https://api.siputzx.my.id/api/d/ytmp4?url=${encodeURIComponent(urlInput.value)}&format=${format}`;
         const response = await fetch(apiUrl);
         const data = await response.json();
 
