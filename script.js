@@ -16,13 +16,14 @@ async function downloadInstagram() {
     errorMessage.classList.add('hide');
 
     try {
-        const apiUrl = `https://cors.karankingrider.workers.dev/?url=https://ytdl-amber.vercel.app/api/instagram?url=${encodeURIComponent(urlInput.value)}&quality=${quality}&format=${fo}`;
+        // Using your provided Instagram API
+        const apiUrl = `https://www.instagramsave.com/info?url=${encodeURIComponent(urlInput.value)}`;
         const response = await fetch(apiUrl);
         const data = await response.json();
 
-        if (data.video_url) {
-            videoPlayer.src = data.video_url;
-            downloadButton.href = data.video_url;
+        if (data.video) {
+            videoPlayer.src = data.video;
+            downloadButton.href = data.video;
             videoContainer.classList.remove('hide');
         } else {
             showError('Could not fetch video. Check the link.');
@@ -53,7 +54,8 @@ async function downloadYouTube() {
     errorMessage.classList.add('hide');
 
     try {
-        const apiUrl = `https://api.siputzx.my.id/api/d/ytmp4?url=${encodeURIComponent(urlInput.value)}&format=${format}`;
+        // Replace with your correct YouTube API endpoint
+        const apiUrl = `https://your-youtube-api.com/download?url=${encodeURIComponent(urlInput.value)}&format=${format}`;
         const response = await fetch(apiUrl);
         const data = await response.json();
 
