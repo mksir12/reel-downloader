@@ -7,7 +7,7 @@ async function downloadInstagram() {
     const downloadButton = document.getElementById('downloadButton');
 
     if (!urlInput.value) {
-        showError('Please enter a valid Instagram URL');
+        showError('Please enter a valid kung URL');
         return;
     }
 
@@ -17,7 +17,7 @@ async function downloadInstagram() {
 
     try {
         // Using your provided Instagram API
-        const apiUrl = `https://www.instagramsave.com/info?url=${encodeURIComponent(urlInput.value)}`;
+        const apiUrl = `https://cors.karankingrider.workers.dev/?url=https://ytdl-amber.vercel.app/api/instagram?url=${encodeURIComponent(urlInput.value)}&quality=${quality}&format=${format}`;
         const response = await fetch(apiUrl);
         const data = await response.json();
 
