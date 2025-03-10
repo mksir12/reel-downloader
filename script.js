@@ -1,66 +1,78 @@
 async function downloadInstagram() {
-    const url = document.getElementById("reelUrl").value;
-    const loading = document.getElementById("loading");
-    const videoPlayer = document.getElementById("videoPlayer");
-    const downloadButton = document.getElementById("downloadButton");
+    const urlInput = document.getElementById('reelUrl');
+    const loading = document.getElementById('loading');
+    const errorMessage = document.getElementById('errorMessage');
+    const videoContainer = document.getElementById('videoContainer');
+    const videoPlayer = document.getElementById('videoPlayer');
+    const downloadButton = document.getElementById('downloadButton');
 
-    if (!url) {
-        alert("Please enter an Instagram reel URL.");
+    if (!urlInput.value) {
+        showError('Please enter a valid Instagram URL');
         return;
     }
 
-    loading.classList.remove("hide");
+    loading.classList.remove('hide');
+    videoContainer.classList.add('hide');
+    errorMessage.classList.add('hide');
 
     try {
-        const response = await fetch(`https://ytdl-amber.vercel.app/api/instagram?url=${encodeURIComponent(url)}`);
+        const apiUrl = `https://your-api-link.com/instagram?url=${encodeURIComponent(urlInput.value)}`;
+        const response = await fetch(apiUrl);
         const data = await response.json();
 
         if (data.video_url) {
             videoPlayer.src = data.video_url;
             downloadButton.href = data.video_url;
-            videoPlayer.classList.remove("hide");
-            downloadButton.classList.remove("hide");
+            videoContainer.classList.remove('hide');
         } else {
-            alert("Failed to get video. Please try again.");
+            showError('Could not fetch video. Check the link.');
         }
     } catch (error) {
-        alert("Error processing request.");
+        showError('An error occurred. Please try again.');
     } finally {
-        loading.classList.add("hide");
+        loading.classList.add('hide');
     }
 }
 
 async function downloadYouTube() {
-    const url = document.getElementById("youtubeUrl").value;
-    const format = document.getElementById("format").value;
-    const loading = document.getElementById("loadingYT");
-    const videoPlayer = document.getElementById("videoPlayerYT");
-    const downloadButton = document.getElementById("downloadButtonYT");
+    const urlInput = document.getElementById('youtubeUrl');
+    const format = document.getElementById('format').value;
+    const loading = document.getElementById('loading');
+    const errorMessage = document.getElementById('errorMessage');
+    const videoContainer = document.getElementById('videoContainer');
+    const videoPlayer = document.getElementById('videoPlayer');
+    const downloadButton = document.getElementById('downloadButton');
 
-    if (!url) {
-        alert("Please enter a YouTube video URL.");
+    if (!urlInput.value) {
+        showError('Please enter a valid YouTube URL');
         return;
     }
 
-    loading.classList.remove("hide");
+    loading.classList.remove('hide');
+    videoContainer.classList.add('hide');
+    errorMessage.classList.add('hide');
 
     try {
-        const response = await fetch(`https://ytdl-amber.vercel.app/api/youtube?url=${encodeURIComponent(url)}&format=${format}`);
+        const apiUrl = `https://your-api-link.com/youtube?url=${encodeURIComponent(urlInput.value)}&format=${format}`;
+        const response = await fetch(apiUrl);
         const data = await response.json();
 
         if (data.video_url) {
-            if (format === "mp4") {
-                videoPlayer.src = data.video_url;
-                videoPlayer.classList.remove("hide");
-            }
+            videoPlayer.src = data.video_url;
             downloadButton.href = data.video_url;
-            downloadButton.classList.remove("hide");
+            videoContainer.classList.remove('hide');
         } else {
-            alert("Failed to get video. Please try again.");
+            showError('Could not fetch video. Check the link.');
         }
     } catch (error) {
-        alert("Error processing request.");
+        showError('An error occurred. Please try again.');
     } finally {
-        loading.classList.add("hide");
+        loading.classList.add('hide');
     }
+}
+
+function showError(message) {
+    const errorMessage = document.getElementById('errorMessage');
+    errorMessage.textContent = message;
+    errorMessage.classList.remove('hide');
 }
