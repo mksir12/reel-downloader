@@ -11,28 +11,26 @@
     <script defer src="script.js"></script>
 </head>
 <body class="min-h-screen bg-gray-50">
-
     <nav class="navbar">
-        <div class="container">
-            <div class="logo">
-                <i class="fab fa-instagram text-3xl text-pink-600"></i>
-                <span>Reel Downloader</span>
-            </div>
-            <div class="nav-links">
-                <a href="youtube.html" class="btn">YouTube Downloader</a>
-            </div>
+        <div class="logo"><i class="fab fa-instagram"></i> Reel Downloader</div>
+        <div class="menu">
+            <a href="youtube.html">YouTube Downloader</a>
         </div>
     </nav>
 
     <div class="container">
         <div class="card">
+            <h1>Download Instagram Reels</h1>
             <input type="text" id="reelUrl" placeholder="Paste Instagram reel URL here..." class="input-box">
-            <button onclick="downloadInstagram()" class="btn primary">Download Reel</button>
-            <div id="loading" class="loading hide"></div>
-            <video id="videoPlayer" controls class="hide"></video>
-            <a id="downloadButton" href="#" download class="btn hide">Save Video</a>
+            <button onclick="downloadInstagram()" class="download-btn">Download Reel</button>
+        </div>
+        <div id="progressBar" class="progress-bar hide"></div>
+        <div id="loading" class="loading hide">Processing...</div>
+        <div id="errorMessage" class="error-message hide"></div>
+        <div id="videoContainer" class="video-container hide">
+            <video id="videoPlayer" controls></video>
+            <a id="downloadButton" href="#" download class="download-btn">Save Video</a>
         </div>
     </div>
-
 </body>
 </html>
