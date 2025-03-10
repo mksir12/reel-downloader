@@ -7,7 +7,7 @@ async function downloadInstagram() {
     const downloadButton = document.getElementById('downloadButton');
 
     if (!urlInput.value) {
-        showError('Please enter a valid kung URL');
+        showError('Please enter a valid kf sl gg URL');
         return;
     }
 
@@ -16,9 +16,11 @@ async function downloadInstagram() {
     errorMessage.classList.add('hide');
 
     try {
-        // Using your provided Instagram API
-        const apiUrl = `https://cors.karankingrider.workers.dev/?url=https://ytdl-amber.vercel.app/api/instagram?url=${encodeURIComponent(urlInput.value)}&quality=${quality}&format=${format}`;
+        const apiUrl = `https://cors.karankingrider.workers.dev/?url=https://ytdl-amber.vercel.app/api/instagram?url=${encodeURIComponent(urlInput.value)}`;
         const response = await fetch(apiUrl);
+        
+        if (!response.ok) throw new Error('Failed to fetch data');
+        
         const data = await response.json();
 
         if (data.video) {
@@ -54,9 +56,11 @@ async function downloadYouTube() {
     errorMessage.classList.add('hide');
 
     try {
-        // Replace with your correct YouTube API endpoint
         const apiUrl = `https://your-youtube-api.com/download?url=${encodeURIComponent(urlInput.value)}&format=${format}`;
         const response = await fetch(apiUrl);
+        
+        if (!response.ok) throw new Error('Failed to fetch data');
+        
         const data = await response.json();
 
         if (data.video_url) {
