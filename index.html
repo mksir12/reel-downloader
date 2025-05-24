@@ -1076,38 +1076,22 @@
         }
 
         async function uploadFile(file, fileHash) {
-          try {
-            let uploadFile = file;
+  const formData = new FormData();
+  formData.append('file', file);
 
-            if (enableCompression && file.type.startsWith('image/') && file.type !== 'image/gif') {
-              uploadFile = await compressImage(file);
-            }
+  const response = await fetch('https://ar-hosting.pages.dev/upload', {
+    method: 'POST',
+    body: formData
+  });
 
-            const formData = new FormData();
-            formData.append('file', uploadFile, file.name);
-
-            const response = await fetch('/upload', { 
-              method: 'POST', 
-              body: formData 
-            });
-            
-            if (!response.ok) {
-              throw new Error(`Server returned ${response.status}`);
-            }
-            
-            const data = await response.json();
-
-            if (data.error) {
-              throw new Error(data.error);
-            } else {
-              originalImageURLs.push(data.data);
-              updateFileLinkDisplay();
-              saveToLocalCache(data.data, file.name, fileHash);
-            }
-          } catch (error) {
-            console.error('Upload error:', error);
-            throw error;
-          }
+  const result = await response.json();
+  if (result.url) {
+    originalImageURLs.push(result.url);
+    updateFileLinkDisplay();
+    saveToLocalCache(result.url, file.name, fileHash);
+  } else {
+    throw new Error('Upload failed');
+  } 
         }
 
         async function compressImage(file, quality = 0.75) {
